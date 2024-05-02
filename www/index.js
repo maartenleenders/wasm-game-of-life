@@ -129,6 +129,14 @@ resetButton.addEventListener("click", event => {
 	drawCells();
 });
 
+// Reseed
+const reseedButton = document.getElementById("reseed");
+reseedButton.addEventListener("click", event => {
+	universe.reseed();
+	drawGrid();
+	drawCells();
+});
+
 // Rendering
 const renderLoop = () => {
 	if (animationId % speedInput.value === 0) {

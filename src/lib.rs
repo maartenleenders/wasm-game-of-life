@@ -2,6 +2,7 @@ mod utils;
 
 use wasm_bindgen::prelude::*;
 use std::fmt;
+use fastrand;
 
 #[wasm_bindgen]
 #[repr(u8)]
@@ -74,6 +75,18 @@ impl Universe {
 	pub fn kill_all(&mut self) {
 		self.cells = (0..self.width * self.height)
 			.map(|_| Cell::Dead)
+			.collect();
+	}
+
+	pub fn reseed(&mut self) {
+		self.cells = (0..self.width*self.height)
+			.map(|_| {
+				if fastrand::bool() {
+					Cell::Alive
+				} else {
+					Cell::Dead
+				}
+			})
 			.collect();
 	}
 
